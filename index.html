@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var container = document.createElement("div")
+        container.style.width = "100%"
+        container.style.display = "flex"
+        container.style.flexDirection = "row"
+        container.style.flexWrap = "wrap"
+        
+        
+
+        fetch("https://restcountries.com/v3.1/all")
+        .then(function(data){
+            return data.json();
+        })
+        .then(function(dataObj){
+            console.log(dataObj)
+            
+            //  cantainer.appendChild(mydiv);
+             dataObj.forEach(function(element){
+                var mydiv = document.createElement("div");
+                mydiv.style.height = "250px"
+            
+                mydiv.style.width = "200px";
+                
+                
+             
+                mydiv.style.margin = "20px";
+                mydiv.style.border ="5px solid black";
+            
+                mydiv.style.position = "reletive"
+                var box = document.createElement("img");
+                box.style.height = "100px"
+                box.style.width = "175px";
+                box.setAttribute("src",element.flags.png);
+                box.style.borderColor = "1px solid black";
+                box.style.padding = "8px";
+                box.style.border = "5px solid black";
+
+                mydiv.appendChild(box);
+
+                var value = document.createElement("div");
+                value.style.width = "100px";
+                value.style.height = "40px";
+                value.style.margin = "1px";
+                value.style.padding = "5px";
+                value.style.color = "red";
+                value.style.fontWeight = "1000";
+                value.style.fontFamily = "arabic";
+                value.innerText = element.name.common;
+                 
+                mydiv.appendChild(value);
+                var car = document.createElement("div");
+                car.style.width = "100px";
+                car.style.height = "50px";
+                car.style.marginLeft = "1px";
+                car.style.padding = "5px";
+                car.style.color="blue";
+                car.style.fontWeight ="500";
+                car.style.fontFamily = "arabic";
+                car.innerText = element.car.signs;
+               
+                mydiv.appendChild(car);
+                container.appendChild(mydiv)
+             })
+
+    
+             document.body.appendChild(container);
+        })
+        
+
+           
+        .catch(function(err){
+            console.log(err);
+        })
+        
+       
+        
+
+
+    </script>
+</body>
+
+</html>
